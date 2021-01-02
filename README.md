@@ -6,6 +6,9 @@ It is designed to be run on a BeagleBone Black through ssh.
 ### General Use Instructions ###
 
 1. Use ssh to connect to the BeagleBone Black
+   - Open the Command Prompt
+   - type `ssh beaglebone`
+   - enter the BeagleBone password
 2. Type `./run_server.sh`
    - This will start the server
    - You can press Ctrl+C at anytime to stop the server
