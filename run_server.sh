@@ -6,4 +6,4 @@ if [[ $PYTHONPATH != *"$currentdir/Submodules"* ]]; then
   export PYTHONPATH=$currentdir/Submodules:$PYTHONPATH
 fi
 echo $PYTHONPATH
-python bbb_test_runner/TestRunnerManager.py
+python3 bbb_test_runner/TestRunnerManager.py
