@@ -7,7 +7,7 @@ It is designed to be run on a BeagleBone Black through ssh.
 
 1. Use ssh to connect to the BeagleBone Black
    - Open the Command Prompt
-   - type `ssh beaglebone`
+   - type `ssh debian@beaglebone`
    - enter the BeagleBone password
 2. Type `./run_server.sh`
    - This will start the server
