@@ -1,4 +1,3 @@
-import base64
 import json
 
 
@@ -30,12 +29,7 @@ class BBBTestRunner:
         :param test_config: str: The test configuration. Must be valid json
         :return: dict: The import json in dictionary form
         """
-        parsed_test_config = json.loads(test_config)
-        for key in parsed_test_config["i2c"].keys():
-            # change all I2C data to binary from base64 encoding
-            base64_data_str = parsed_test_config["i2c"][key]["data"]
-            parsed_test_config["i2c"][key] = base64.b64decode(base64_data_str)
-        return parsed_test_config
+        return json.loads(test_config)
 
     @staticmethod
     def handle_i2c(i2c_data_dict):
