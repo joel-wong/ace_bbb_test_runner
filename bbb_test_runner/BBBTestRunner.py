@@ -1,4 +1,5 @@
 import json
+import subprocess
 
 
 class BBBTestRunner:
@@ -32,8 +33,18 @@ class BBBTestRunner:
         return json.loads(test_config)
 
     @staticmethod
-    def handle_i2c(i2c_data_dict):
-        pass
+    def handle_i2c(i2c_dict):
+        i2c_spec_keys = sorted(i2c_dict.keys())
+        for key in i2c_spec_keys:
+            i2cbus = i2c_dict[key]["i2cbus"]
+            chip_address = i2c_dict[key]["chip_address"]
+            data_address = i2c_dict[key]["data_address"]
+            subprocess_args = ["i2cset", "-y", i2cbus, chip_address,
+                               data_address]
+            data = i2c_dict[key]["data"]
+            if data != "":
+                subprocess_args.append(data)
+            subprocess.run([" ".join(subprocess_args)], shell=True, check=True)
 
     @staticmethod
     def handle_outputs(bbb_outputs):
