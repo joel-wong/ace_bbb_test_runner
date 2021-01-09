@@ -25,8 +25,12 @@ class TestRunnerManager:
                 if not test_config:
                     # Empty string indicates client is ready to close connection
                     break
-                test_results = self.bbb_test_runner.run_test(test_config)
-                self.server.send_to_client(test_results)
+                try:
+                    test_results = self.bbb_test_runner.run_test(test_config)
+                    self.server.send_to_client(test_results)
+                except Exception as e:
+                    print("Error: {}".format(str(e)))
+                    break
             self.server.disconnect_from_client()
         self.server.close_server()
 
