@@ -6,4 +6,13 @@ if [[ $PYTHONPATH != *"$currentdir/Submodules"* ]]; then
   export PYTHONPATH=$currentdir/Submodules:$PYTHONPATH
 fi
 echo $PYTHONPATH
-python3 bbb_test_runner/TestRunnerManager.py
+
+result=$(pgrep python)
+echo $result
+if [ -z "$result" ]; then
+	echo "Running Server"
+	python3 bbb_test_runner/TestRunnerManager.py
+else
+	echo "Server is Already Running"
+fi
+exit
