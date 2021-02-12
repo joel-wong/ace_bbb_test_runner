@@ -1,8 +1,8 @@
 #!/bin/sh
-result=$(pgrep python)
+result=$(pgrep python3)
 if [ -z "$result" ]; then
 	echo "No Server Running"
 else
-	kill $result
+	kill -2 $result
 fi
 exit

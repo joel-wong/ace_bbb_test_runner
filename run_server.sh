@@ -7,7 +7,7 @@ if [[ $PYTHONPATH != *"$currentdir/Submodules"* ]]; then
 fi
 echo $PYTHONPATH
 
-result=$(pgrep python)
+result=$(pgrep python3)
 echo $result
 if [ -z "$result" ]; then
 	echo "Running Server"
