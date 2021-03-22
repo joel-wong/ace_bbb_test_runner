@@ -1,4 +1,5 @@
 import socket
+import subprocess
 
 from bbb_test_runner import BBBTestRunner
 
@@ -10,6 +11,16 @@ class TestRunnerManager:
     def __init__(self):
         self.bbb_test_runner = BBBTestRunner.BBBTestRunner()
         self.server = ace_bbsm.Server()
+        self.sha1_id = self.get_git_hash()
+
+    @staticmethod
+    def get_git_hash():
+        sha1_id, temp = subprocess.Popen(['git', 'rev-parse', 'HEAD'], stdout=subprocess.PIPE).communicate()
+        # clean up
+        sha1_id = sha1_id.decode()
+        sha1_id.rstrip('\n')
+        return sha1_id
+
 
     def run_server(self):
         """
