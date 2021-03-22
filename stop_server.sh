@@ -5,4 +5,5 @@ if [ -z "$result" ]; then
 else
 	kill -s INT $result
 fi
+echo "Server Stopped"
 exit
