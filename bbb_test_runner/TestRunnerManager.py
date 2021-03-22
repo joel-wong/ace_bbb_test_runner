@@ -1,5 +1,6 @@
 import socket
 import subprocess
+import json
 
 from bbb_test_runner import BBBTestRunner
 
@@ -60,8 +61,14 @@ class TestRunnerManager:
             print(str(e))
         except Exception as e:
             # client has sent invalid data, print error and disconnect
-            print("Error: {}".format(str(e)))
-        self.server.disconnect_from_client()
+            error = dict(Error=str(e))
+            print(error)
+            try:
+                self.server.send_to_client(json.dumps(error))
+            except Exception as e:
+                print(str(e))
+        finally:
+            self.server.disconnect_from_client()
 
     def service_test_specification(self):
         """
