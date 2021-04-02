@@ -1,17 +1,43 @@
 # README #
 
 This folder contains a test runner for the ACE Card Testing Framework.
-It is designed to be run on a BeagleBone Black through ssh.
+It is designed to be run on a BeagleBone Black.
 
-### General Use Instructions ###
+### General Usage Instructions ###
 
-1. Use ssh to connect to the BeagleBone Black
-   - Open the Command Prompt
-   - type `ssh debian@beaglebone`
+Production staff should not need to directly interact with this software.
+It is designed to run automatically upon starting up the BeagleBone.
+
+To check if this is automatically running when powering up the BeagleBone,
+you can simply click the `ace-test-framework/RunTests.bat` file on a computer
+and start the tests. If there is an error stating that you are unable to
+connect to the host address, try restarting the BeagleBone and then running 
+`ace-test-framework/RunTests.bat` again. If the tests run, then this software
+is already running!
+
+If that does not work, follow the Initial Setup Instructions below to set up
+the BeagleBone.
+
+### Initial Setup Instructions ###
+
+When initially setting up a new BeagleBone to run tests (i.e. on a BeagleBone
+which has just had its memory flashed), you must do the following:
+
+On your computer:
+1. Open the Command Prompt
+2. cd to the directory containing the `ace-bbb-test-runner` folder 
+3. Run `scp -r ace-bbb-test-runner debian@beaglebone:/home/debian`
    - enter the BeagleBone password
-2. Type `./run_server.sh`
-   - This will start the server
-   - You can press Ctrl+C at anytime to stop the server
+4. Run `ssh debian@beaglebone`
+   - enter the BeagleBone password
+5. Type `cd ace-bbb-test-runner`, then hit enter
+6. Type `sudo cp rc.local /etc/rc.local`
+   - enter the BeagleBone password
+7. Type `sudo chmod +x /etc/rc.local`
+   - enter the BeagleBone password
+   - This will automatically start the server when the BeagleBone starts up
+     in the future
+8. Restart the BeagleBone with the power button
 
 ### Troubleshooting ###
 

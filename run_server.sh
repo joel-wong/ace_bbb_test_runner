@@ -11,7 +11,7 @@ result=$(pgrep python3)
 echo $result
 if [ -z "$result" ]; then
 	echo "Running Server"
-	python3 bbb_test_runner/TestRunnerManager.py
+	python3 bbb_test_runner/TestRunnerManager.py > /dev/null &
 else
 	echo "Server is Already Running"
 fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/debian/ace-bbb-test-runner
+./run_server.sh
+exit 0
