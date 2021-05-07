@@ -30,14 +30,20 @@ On your computer:
    - enter the BeagleBone password
 4. Run `ssh debian@beaglebone`
    - enter the BeagleBone password
-5. Type `cd ace-bbb-test-runner`, then hit enter
-6. Type `sudo cp rc.local /etc/rc.local`
+5. Run `cd ace-bbb-test-runner`
+6. Run `sudo cp rc.local /etc/rc.local`
    - enter the BeagleBone password
-7. Type `sudo chmod +x /etc/rc.local`
+7. Run `sudo chmod +x /etc/rc.local`
    - enter the BeagleBone password
    - This will automatically start the server when the BeagleBone starts up
      in the future
-8. Restart the BeagleBone with the power button
+8. Run `cat /etc/network/interfaces`
+9. One of the entries in the output of the above command will be of the form
+   `ethernet_0123456789ab_cable`. Run
+   `sudo connmanctl config ethernet_0123456789ab_cable --ipv4 manual 10.16.132.250 255.255.255.0 10.16.132.1 --nameservers 8.8.8.8`
+   with `0123456789ab` replaced by the appropriate numbers and letters
+   - This will ensure the server has the correct IP address
+10. Restart the BeagleBone with the power button
 
 ### Troubleshooting ###
 
@@ -64,4 +70,4 @@ Run `git clean -xfd` in the `ace-bbb-test-runner` directory
 ### Development Notes/Troubleshooting ###
 
 The BeagleBone may ship with both python 2 and python 3. To check the alias for
-each version, try running need to run `python --version` and `python3 --version`
+each version, try running `python --version` and `python3 --version`
